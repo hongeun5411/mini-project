@@ -1,12 +1,13 @@
 package view;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 import controller.LifeRecordController;
 import model.Child;
 
-public class LifeRecordView {
+public class LifeRecordView2 {
 
 	private Scanner sc = new Scanner(System.in);
 	private LifeRecordController lrc = new LifeRecordController();
@@ -46,10 +47,6 @@ public class LifeRecordView {
 		}
 	}
 	
-	private void recordMenu() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void childMenu() {
 		
@@ -79,13 +76,13 @@ public class LifeRecordView {
 		case 9 :
 			System.out.println("메인 메뉴로 돌아갑니다!");
 			return;
-		}
-		
-	}
+		}	
+	}	
 	
 
+	
 	public void addChild() {
-		System.out.print("이름: ");
+		System.out.println("이름 : ");
 		String name = sc.next();
 
 		System.out.print("성별(남/여) : ");
@@ -113,29 +110,38 @@ public class LifeRecordView {
 		lrc.addChild(new Child(name, gender, age, height, weight, fatherPhone, motherPhone));
 	}
 
-	public void getChild() {
-		System.out.print("조회할 원생 이름: ");
+	private void recordMenu() {
+		System.out.print("원아 검색 : ");
 		String name = sc.next();
-
-		System.out.print("나이: ");
-		int age = sc.nextInt();
-
-		Child c = lrc.getChild(name, age);
-
-		if (c != null) {
-			System.out.println(c);
-		} else {
-			System.out.println("해당 원생이 등록되지 않았습니다.");
+		Child c = lrc.getChild(name);
+		
+		if(c==null) {
+			System.out.println("해당원아가 존재하지 않습니다.");
+		return;
 		}
-	}
-
-	public void updateLifeRecord() {
-
-		System.out.print("이름: ");
-		String name = sc.next();
-
-		System.out.print("날짜: 년 월 일");
-		String date = sc.next();
+		
+		System.out.println("1. 기록 추가");
+		System.out.println("2. 기록 조회");
+		System.out.print("선택: ");
+		
+		int rc = sc.nextInt();
+		
+		switch(rc) {
+		case 1 : addrecord(c);
+		break;
+		
+		case 2 : // todo
+			break;
+		
+	
+		
+		}
+		
+	}	
+	
+	public void addrecord(Child c) {
+		LocalDate today = LocalDate.now();
+		System.out.println(today);
 
 		System.out.print("출석(출석/결석):");
 		String attendance = sc.next();
@@ -151,17 +157,65 @@ public class LifeRecordView {
 		System.out.print("점심(적게/정량/많게) : ");
 		String lunch = sc.next();
 
-		System.out.print("낮잠 시간: ");
-		int nap = sc.nextInt();
-
 		System.out.print("낮잠 분: ");
-		int nap1 = sc.nextInt();
+		int nap = sc.nextInt();	
+		
+		int result = lrc.addRecord(c, fever, lunch, nap);
+		if(result == 1) {
+		System.out.println("기록을 성공했습니다");
+		} else {
+		System.out.println("기록을 실패했습니다");
+		}
+	}
+	
+	public void getChild() {
+		
+		
+		System.out.print("조회할 원생 이름: ");
+		String name = sc.next();
+
+		System.out.print("나이: ");
+		int age = sc.nextInt();
+
+		Child c = lrc.getChild(name, age);
+
+		if (c != null) {
+			System.out.println(c);
+		} else {
+			System.out.println("해당 원생이 등록되지 않았습니다.");
+		}
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void updateLifeRecord() {
+
 	}
 
 	public void removeChild() {
 
 		System.out.println("****** 삭제할 원생 이름 : ******");
-		sc.nextLine();
+		sc.nextLine(); // 버퍼 비우기
 		String name = sc.nextLine();
 
 		List<Child> result = lrc.findChild(name);

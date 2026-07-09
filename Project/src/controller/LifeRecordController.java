@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Child;
+import model.LifeRecord;
 
 public class LifeRecordController {
 
 	private List<Child> childList = new ArrayList<Child>();
-	private List<Record> lifeRecordList;
+	private List<LifeRecord> lifeRecordList = new ArrayList<>();
 	
 	public void addChild(Child child) {
 		
@@ -67,7 +68,16 @@ public class LifeRecordController {
 		return 1;
 	}
 	
-	
+	public int addRecord(Child c, String fever, String lunch, int nap) {
+		LifeRecord record = new LifeRecord();
+		record.setChild(c);
+		record.setFever(fever);
+		record.setLunch(lunch);
+		record.setNap(nap);
+		
+		lifeRecordList.add(record);
+		return 1;
+	}
 
 	public int updateLifeRecord1(String  name, String fatherPhone, String motherphone) {
 		for(int i =0; i < childList.size(); i++ ) {

@@ -6,10 +6,8 @@ public class LifeRecord {
 	private String date;
 	private String attendance;
 	private String fever;
-	private String moringSnack;
 	private String lunch;
-	private String afternoonSnack;
-	private String nap;
+	private int nap;
 	public Child getChild() {
 		return child;
 	}
@@ -42,14 +40,7 @@ public class LifeRecord {
 		this.fever = fever;
 	}
 	
-	public String getMoringSnack() {
-		return moringSnack;
-	}
-	
-	public void setMoringSnack(String moringSnack) {
-		this.moringSnack = moringSnack;
-	}
-	
+
 	public String getLunch() {
 		return lunch;
 	}
@@ -58,28 +49,22 @@ public class LifeRecord {
 		this.lunch = lunch;
 	}
 	
-	public String getAfternoonSnack() {
-		return afternoonSnack;
-	}
 	
-	public void setAfternoonSnack(String afternoonSnack) {
-		this.afternoonSnack = afternoonSnack;
-	}
-	
-	public String getNap() {
+	public int getNap() {
 		return nap;
 	}
 	
-	public void setNap(String nap) {
+	public void setNap(int nap) {
 		this.nap = nap;
 	}
+
 	
 	@Override
 	public String toString() {
 		return "LifeRecord [child=" + child + ", date=" + date + ", attendance=" + attendance + ", fever=" + fever
-				+ ", moringSnack=" + moringSnack + ", lunch=" + lunch + ", afternoonSnack=" + afternoonSnack + ", nap="
-				+ nap + "]";
+				+ ", lunch=" + lunch + ", nap=" + nap + "]";
 	}
-		
+	
+
 	
 }
