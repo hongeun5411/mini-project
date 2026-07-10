@@ -91,6 +91,32 @@ public class LifeRecordController {
 		return 0;
 	}
 	
+	public List<LifeRecord> getRecordList(Child re) {
+		// < 전달 받은 원아(Child re)의 기록 목록(결과를 따로 보관)을 반환 >
+		
+		// * 결과를 담을 리스트
+		List<LifeRecord> result = new ArrayList<>();
+		
+		// * 현재 저장된 기록 목록(lifeRecordList)에서 해당 원아의 기록만 결과리스트에 추가
+		// for(초기식;조건식;증감식) {}
+		// for(자료형 변수명 : 배열이나리스트명) {}
+		for(LifeRecord r : lifeRecordList) {
+			
+			// 기록된 정보 중 원아의 이름과, 전달받은 원아의 이름이 일치하면 결과에 추가
+			if(r.getChild().getName().equals(re.getName())  ) {
+				
+				result.add(r);
+				
+			}
+			
+		} return result;
+		
+		// * 결과 목록 반환
+		
+		
+	}
+	
+	
 //	public String getResult() {
 //		List<Child> result = findChild(name);
 //	}

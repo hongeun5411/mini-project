@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import controller.LifeRecordController;
 import model.Child;
+import model.LifeRecord;
 
 public class LifeRecordView2 {
 
@@ -66,7 +67,7 @@ public class LifeRecordView2 {
 			break;
 		
 		case 2 :
-			getChild();
+			addChild();
 			break;
 			
 		case 3 :
@@ -130,10 +131,8 @@ public class LifeRecordView2 {
 		case 1 : addrecord(c);
 		break;
 		
-		case 2 : // todo
+		case 2 : viewRecord(c);
 			break;
-		
-	
 		
 		}
 		
@@ -168,45 +167,16 @@ public class LifeRecordView2 {
 		}
 	}
 	
-	public void getChild() {
+	public void viewRecord(Child c) {
 		
 		
-		System.out.print("조회할 원생 이름: ");
-		String name = sc.next();
-
-		System.out.print("나이: ");
-		int age = sc.nextInt();
-
-		Child c = lrc.getChild(name, age);
-
-		if (c != null) {
-			System.out.println(c);
-		} else {
-			System.out.println("해당 원생이 등록되지 않았습니다.");
-		}
+		// 해당 원아의 기록 조회
+		List<LifeRecord> result = lrc.getRecordList(c);
+		
+		for(LifeRecord r : result) {
+			System.out.println(r);
+		} 
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public void updateLifeRecord() {
 
